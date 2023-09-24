@@ -1,0 +1,34 @@
+//////// BOTÓN + LED ////////
+
+//////// MIS VARIABLES ////////
+
+int led = 3; 
+int button = 2;
+bool estado;
+int estado_ant = 0;
+int estado_led = 0;
+
+//////// MI SETUP ////////
+
+void setup(){
+  pinMode(led,OUTPUT);
+  pinMode(button,INPUT);
+}
+
+//////// MI LOOP ////////
+
+void loop(){
+ estado = digitalRead(button);
+  if ((estado == 1) && (estado_ant == 0)){
+    estado_led = 1 - estado_led;
+  }
+
+  if (estado_led==1){
+    digitalWrite(led,HIGH);
+  }
+  else {
+    digitalWrite(led,LOW);
+  }
+
+  estado_ant = estado;
+}
