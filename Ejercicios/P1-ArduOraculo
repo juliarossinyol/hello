@@ -20,14 +20,16 @@ String c3 = "Amarillo!";
 String miPregunta;
 int valRandom;
 
-int ledW = 3;             //led de bienvenida
+int ledW = 2;             //led de bienvenida
 
-int ledB1 = A0; 
-int ledB2 = A5; 
-int ledY1 = A1; 
-int ledY2 = A4;
-int ledR1 = A2;
-int ledR2 = A3;
+int ledB1 = 3; 
+int ledB2 = 5; 
+int ledY1 = 6; 
+int ledY2 = 9;
+int ledR1 = 10;
+int ledR2 = 11;
+
+int vled[6] = {ledB1,ledY1,ledR2,ledR1,ledY2,ledB2};
 
 int fadeCount = 5;  // El valor del incremento del brillo por cada bucle (podéis experimentar incrementando este valor)
 int brillo = 0;    // Valor inicial del brillo para un led.
@@ -48,7 +50,7 @@ void setup() {
   pinMode(ledY1,OUTPUT);
   pinMode(ledY2,OUTPUT);
 
-  analogWrite(ledW, 50);
+  digitalWrite(ledW, HIGH);
   
   if (Serial) {                                                                     // Comprobamos que el Monitor Serial está abierto
     Serial.println("¡Bienvenido! ¿Quieres saber tu futuro? Hazme una pregunta.");  // Imprimimos el texto
@@ -64,68 +66,35 @@ void loop() {
     Serial.println(miPregunta);
     delay(2000);
 
+    /// RESPUESTA ALEATORIA A LA PREGUNTA - SECUENCIAS DE LUCES DE COLOR ///
+
     // Tiramos un "dado" para conseguir un número aleatorio entre 0 y 2.
     valRandom = random(1, 1);
 
     if (valRandom == 0) {
       Serial.println(s1);
-      delay(2000);
-      digitalWrite(ledB1, HIGH);
-      digitalWrite(ledB2, HIGH);
-      delay(100);
-      digitalWrite(ledY1, HIGH);
-      digitalWrite(ledY2, HIGH);
-      delay(100);
-      digitalWrite(ledR1, HIGH);
-      digitalWrite(ledR2, HIGH);
-      delay(100);
-      digitalWrite(ledR1, LOW);
-      digitalWrite(ledR2, LOW);
-      delay(100);
-      digitalWrite(ledY1, LOW);
-      digitalWrite(ledY2, LOW);
-      delay(100);
-      digitalWrite(ledB1, LOW);
-      digitalWrite(ledB2, LOW);
-      delay(100);
-
-      digitalWrite(ledB1, HIGH);
-      digitalWrite(ledB2, HIGH);
-      delay(100);
-      digitalWrite(ledY1, HIGH);
-      digitalWrite(ledY2, HIGH);
-      delay(100);
-      digitalWrite(ledR1, HIGH);
-      digitalWrite(ledR2, HIGH);
-      delay(100);
-      digitalWrite(ledR1, LOW);
-      digitalWrite(ledR2, LOW);
-      delay(100);
-      digitalWrite(ledY1, LOW);
-      digitalWrite(ledY2, LOW);
-      delay(100);
-      digitalWrite(ledB1, LOW);
-      digitalWrite(ledB2, LOW);
-      delay(100);
-
-      digitalWrite(ledB1, HIGH);
-      digitalWrite(ledB2, HIGH);
-      delay(100);
-      digitalWrite(ledY1, HIGH);
-      digitalWrite(ledY2, HIGH);
-      delay(100);
-      digitalWrite(ledR1, HIGH);
-      digitalWrite(ledR2, HIGH);
-      delay(100);
-      digitalWrite(ledR1, LOW);
-      digitalWrite(ledR2, LOW);
-      delay(100);
-      digitalWrite(ledY1, LOW);
-      digitalWrite(ledY2, LOW);
-      delay(100);
-      digitalWrite(ledB1, LOW);
-      digitalWrite(ledB2, LOW);
-      delay(100);
+      delay(1000);
+      
+      for (int n=0; n<=3; n=n+1){
+        digitalWrite(ledB1, HIGH);
+        digitalWrite(ledB2, HIGH);
+        delay(100);
+        digitalWrite(ledY1, HIGH);
+        digitalWrite(ledY2, HIGH);
+        delay(100);
+        digitalWrite(ledR1, HIGH);
+        digitalWrite(ledR2, HIGH);
+        delay(100);
+        digitalWrite(ledR1, LOW);
+        digitalWrite(ledR2, LOW);
+        delay(100);
+        digitalWrite(ledY1, LOW);
+        digitalWrite(ledY2, LOW);
+        delay(100);
+        digitalWrite(ledB1, LOW);
+        digitalWrite(ledB2, LOW);
+        delay(100);  
+        }
 
     } else if (valRandom == 1) {
       Serial.println(s2);
@@ -154,104 +123,53 @@ void loop() {
         
         delay(30);
         }
-
-      
-
         delay(1000);
-      
-    } 
+      }  
+
       else if (valRandom == 2) {
       Serial.println(s3);
       delay(2000);
-      digitalWrite(ledB1, HIGH);
-      digitalWrite(ledB2, HIGH);
-      digitalWrite(ledR1, HIGH);
-      digitalWrite(ledR2, HIGH);
-      digitalWrite(ledY1, HIGH);
-      digitalWrite(ledY2, HIGH);
-      delay(200);
-      digitalWrite(ledB1, LOW);
-      digitalWrite(ledB2, LOW);
-      digitalWrite(ledR1, LOW);
-      digitalWrite(ledR2, LOW);
-      digitalWrite(ledY1, LOW);
-      digitalWrite(ledY2, LOW);
-      delay(200);
-      digitalWrite(ledB1, HIGH);
-      digitalWrite(ledB2, HIGH);
-      digitalWrite(ledR1, HIGH);
-      digitalWrite(ledR2, HIGH);
-      digitalWrite(ledY1, HIGH);
-      digitalWrite(ledY2, HIGH);
-      delay(200);
-      digitalWrite(ledB1, LOW);
-      digitalWrite(ledB2, LOW);
-      digitalWrite(ledR1, LOW);
-      digitalWrite(ledR2, LOW);
-      digitalWrite(ledY1, LOW);
-      digitalWrite(ledY2, LOW);
-      delay(200);
-      digitalWrite(ledB1, HIGH);
-      digitalWrite(ledB2, HIGH);
-      digitalWrite(ledR1, HIGH);
-      digitalWrite(ledR2, HIGH);
-      digitalWrite(ledY1, HIGH);
-      digitalWrite(ledY2, HIGH);
-      delay(200);
-      digitalWrite(ledB1, LOW);
-      digitalWrite(ledB2, LOW);
-      digitalWrite(ledR1, LOW);
-      digitalWrite(ledR2, LOW);
-      digitalWrite(ledY1, LOW);
-      digitalWrite(ledY2, LOW);
-      delay(200);
-    } 
+
+      for (int n=0; n<5; n=n+1){
+        digitalWrite(ledB1, HIGH);
+        digitalWrite(ledB2, HIGH);
+        digitalWrite(ledR1, HIGH);
+        digitalWrite(ledR2, HIGH);
+        digitalWrite(ledY1, HIGH);
+        digitalWrite(ledY2, HIGH);
+        delay(200);
+        digitalWrite(ledB1, LOW);
+        digitalWrite(ledB2, LOW);
+        digitalWrite(ledR1, LOW);
+        digitalWrite(ledR2, LOW);
+        digitalWrite(ledY1, LOW);
+        digitalWrite(ledY2, LOW);
+        delay(200);
+        }
+    
+      } 
 
       else if (valRandom == 3) {
       Serial.println(s4);
       delay(2000);
-      digitalWrite(ledB1, HIGH);
-      digitalWrite(ledB2, LOW);
-      digitalWrite(ledR1, LOW);
-      digitalWrite(ledR2, HIGH);
-      digitalWrite(ledY1, LOW);
-      digitalWrite(ledY2, HIGH);
-      delay(200);
-      digitalWrite(ledB1, LOW);
-      digitalWrite(ledB2, HIGH);
-      digitalWrite(ledR1, HIGH);
-      digitalWrite(ledR2, LOW);
-      digitalWrite(ledY1, HIGH);
-      digitalWrite(ledY2, LOW);
-      delay(200);
-      digitalWrite(ledB1, HIGH);
-      digitalWrite(ledB2, LOW);
-      digitalWrite(ledR1, LOW);
-      digitalWrite(ledR2, HIGH);
-      digitalWrite(ledY1, LOW);
-      digitalWrite(ledY2, HIGH);
-      delay(200);
-      digitalWrite(ledB1, LOW);
-      digitalWrite(ledB2, HIGH);
-      digitalWrite(ledR1, HIGH);
-      digitalWrite(ledR2, LOW);
-      digitalWrite(ledY1, HIGH);
-      digitalWrite(ledY2, LOW);
-      delay(200);
-      digitalWrite(ledB1, HIGH);
-      digitalWrite(ledB2, LOW);
-      digitalWrite(ledR1, LOW);
-      digitalWrite(ledR2, HIGH);
-      digitalWrite(ledY1, LOW);
-      digitalWrite(ledY2, HIGH);
-      delay(200);
-      digitalWrite(ledB1, LOW);
-      digitalWrite(ledB2, HIGH);
-      digitalWrite(ledR1, HIGH);
-      digitalWrite(ledR2, LOW);
-      digitalWrite(ledY1, HIGH);
-      digitalWrite(ledY2, LOW);
-      delay(200);
+
+      for (int n=0; n<=3; n=n+1){
+        digitalWrite(ledB1, HIGH);
+        digitalWrite(ledB2, LOW);
+        digitalWrite(ledR1, LOW);
+        digitalWrite(ledR2, HIGH);
+        digitalWrite(ledY1, LOW);
+        digitalWrite(ledY2, HIGH);
+        delay(200);
+        digitalWrite(ledB1, LOW);
+        digitalWrite(ledB2, HIGH);
+        digitalWrite(ledR1, HIGH);
+        digitalWrite(ledR2, LOW);
+        digitalWrite(ledY1, HIGH);
+        digitalWrite(ledY2, LOW);
+        delay(200);
+        }
+
       digitalWrite(ledB1, LOW);
       digitalWrite(ledB2, LOW);
       digitalWrite(ledR1, LOW);
@@ -294,18 +212,35 @@ void loop() {
       delay(200);
     }
 
-    delay(5000);  // añadimos un poco de tiempo de espera
+    delay(2000);
+
+    /// NÚMERO DE LA SUERTE ///
+ 
     // Tiramos un "dado" para conseguir un número aleatorio de la suerte en un rango entre 1 y 6.
     numSuerte = random(1, 6);
     // Tiramos un "dado" para conseguir un número aleatorio decimal de la suerte en un rango entre 1 y 5.
     numSuerteF = random(2, 12) * 0.5;
     Serial.println(numero);
     Serial.println(numSuerte); // Imprimimos un número de la suerte entero
+      
+      delay(1000);
+      
+      for (int n=0;n<numSuerte;n=n+1){
+        digitalWrite(vled[n],HIGH);
+        delay(500);
+      }
+      delay(1000);
+      for (int n=0;n<numSuerte;n=n+1){
+        digitalWrite(vled[n],LOW);
+      }
+      
     delay(2000);
     Serial.println(numSuerteF); // Imprimimos un número de la suerte con decimales
    
-    delay(4000);
+    delay(2000);
 
+    /// COLOR DE LA SUERTE ///
+    
     Serial.println(color);
 
     valRandom = random(0, 2);
@@ -333,8 +268,10 @@ void loop() {
       digitalWrite(ledY2, LOW);
     }
 
-    delay(3000);
+    delay(2000);
 
-    Serial.println(" --------> ¿Cuál es tu siguiente pregunta?.");
+    /// SIGUIENTE PREGUNTA ///
+
+    Serial.println(" --------> ¿Cuál es tu siguiente pregunta?");
   }
 }
